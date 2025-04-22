@@ -33,6 +33,10 @@ class RouteBlockerMiddleware
     false
   end
 
+  def is_api_request?(env)
+    env["HTTP_API_KEY"].present? || env["HTTP_API_USERNAME"].present?
+  end
+
   def absolute_path(path)
     File.join("/", GlobalSetting.relative_url_root.to_s, path)
   end
@@ -59,6 +63,7 @@ class RouteBlockerMiddleware
     return false if !SiteSetting.route_blocker_block_admins && is_admin?(env)
     return false if is_static?(env["PATH_INFO"])
     return false if is_allowed?(env["PATH_INFO"])
+    return false if is_api_request?(env)
 
     path = env["PATH_INFO"].to_s
     blocked_routes = SiteSetting.route_blocker_blocked_routes.split("|")
