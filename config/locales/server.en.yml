@@ -2,3 +2,4 @@ en:
   site_settings:
     route_blocker_enabled: "Enable route blocker plugin"
     route_blocker_block_admins: "Block admins from accessing blocked routes"
+    route_blocker_blocked_routes: "List of routes to block access to (separated by |)"

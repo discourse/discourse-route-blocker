@@ -13,20 +13,6 @@ class RouteBlockerMiddleware
     manifest.webmanifest
   ]
 
-  ABOUT_PATHS = %w[
-    about
-    about.json
-  ]
-
-  STATISTICS_PATHS = %w[
-    site/statistics
-    site/statistics.json
-  ]
-
-  BLOCKED_PATHS = %w[
-    # Add other blocked paths here
-  ]
-
   def initialize(app, _options = {})
     @app = app
   end
@@ -75,20 +61,17 @@ class RouteBlockerMiddleware
     return false if is_allowed?(env["PATH_INFO"])
 
     path = env["PATH_INFO"].to_s
+    blocked_routes = SiteSetting.route_blocker_blocked_routes.split("|")
 
-    # Check if path is in ABOUT_PATHS and about blocking is enabled
-    if SiteSetting.route_blocker_block_about
-      about_match = ABOUT_PATHS.any? { |p| path == "/#{p}" || path == "/#{p}.json" }
-      return true if about_match
+    # Check if the path matches any blocked route (including .json and .html versions)
+    blocked = blocked_routes.any? do |route|
+      base_path = "/#{route}"
+      match = path == base_path ||
+              path == "#{base_path}.json" ||
+              path == "#{base_path}.html"
+      match
     end
 
-    # Check if path is in STATISTICS_PATHS and statistics blocking is enabled
-    if SiteSetting.route_blocker_block_statistics
-      stats_match = STATISTICS_PATHS.any? { |p| path == "/#{p}" || path == "/#{p}.json" }
-      return true if stats_match
-    end
-
-    # Check if path is in BLOCKED_PATHS (always blocked)
-    BLOCKED_PATHS.any? { |p| path == "/#{p}" || path == "/#{p}.json" }
+    blocked
   end
 end

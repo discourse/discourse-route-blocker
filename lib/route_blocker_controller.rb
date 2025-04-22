@@ -2,6 +2,6 @@
 
 class RouteBlockerController < ApplicationController
   def blocked
-    render json: { error: "Access denied" }, status: :forbidden
+    render json: { error: "Not Found" }, status: :not_found
   end
 end
