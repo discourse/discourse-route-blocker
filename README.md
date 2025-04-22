@@ -1,5 +1,5 @@
-# **Plugin Name** Plugin
+# Discourse Route Blocker Plugin
 
-**Plugin Summary**
+A plugin that allows administrators to block specific routes in Discourse.
 
 For more information, please see: **url to meta topic**

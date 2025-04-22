@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-# name: discourse-plugin-name
-# about: TODO
+# name: discourse-route-blocker
+# about: A plugin to block specific routes in Discourse
 # meta_topic_id: TODO
 # version: 0.0.1
 # authors: Discourse
-# url: TODO
+# url: https://github.com/discourse/discourse-route-blocker
 # required_version: 2.7.0
 
-enabled_site_setting :plugin_name_enabled
+enabled_site_setting :route_blocker_enabled
 
-module ::MyPluginModule
-  PLUGIN_NAME = "discourse-plugin-name"
+module ::RouteBlocker
+  PLUGIN_NAME = "discourse-route-blocker"
 end
 
-require_relative "lib/my_plugin_module/engine"
+require_relative "lib/route_blocker/engine"
 
 after_initialize do
   # Code which should run after Rails has finished booting
