@@ -2,3 +2,13 @@ route_blocker:
   route_blocker_enabled:
     default: false
     client: true
+  route_blocker_block_admins:
+    default: false
+    hidden: false
+  route_blocker_block_about:
+    default: false
+    hidden: true
+  route_blocker_block_statistics:
+    default: false
+    hidden: true
+
