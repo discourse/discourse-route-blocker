@@ -3,7 +3,7 @@ en:
     admin:
       site_settings:
         categories:
-          TODO_plugin_name: "Plugin Name"
+          route_blocker: "Route Blocker"
   js:
-    discourse_plugin_name:
+    discourse_route_blocker:
       placeholder: placeholder
