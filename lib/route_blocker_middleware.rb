@@ -11,6 +11,9 @@ class RouteBlockerMiddleware
     session/csrf
     logs/report_js_error
     manifest.webmanifest
+    admin
+    login
+    signup
   ]
 
   def initialize(app, _options = {})
