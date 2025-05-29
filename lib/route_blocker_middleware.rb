@@ -72,13 +72,12 @@ class RouteBlockerMiddleware
     blocked_routes = SiteSetting.route_blocker_blocked_routes.split("|")
 
     # Check if the path matches any blocked route (including .json and .html versions)
-    blocked = blocked_routes.any? do |route|
-      base_path = "/#{route}"
-      match = path == base_path ||
-              path == "#{base_path}.json" ||
-              path == "#{base_path}.html"
-      match
-    end
+    blocked =
+      blocked_routes.any? do |route|
+        base_path = "/#{route}"
+        match = path == base_path || path == "#{base_path}.json" || path == "#{base_path}.html"
+        match
+      end
 
     blocked
   end
