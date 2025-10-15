@@ -22,7 +22,7 @@ class RouteBlockerMiddleware
 
   def call(env)
     if SiteSetting.route_blocker_enabled && is_blocked?(env)
-      RouteBlockerController.action("blocked").call(env)
+      raise Discourse::NotFound.new
     else
       @app.call(env)
     end
