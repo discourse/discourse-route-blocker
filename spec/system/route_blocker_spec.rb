@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "Route Blocker", type: :system do
+RSpec.describe "Route Blocker" do
   before do
     SiteSetting.route_blocker_enabled = true
     SiteSetting.route_blocker_blocked_routes = "about|site/statistics|faq"
